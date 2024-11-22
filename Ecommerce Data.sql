@@ -5,7 +5,10 @@
 ---Below is an overview of the data cleaning process I carried out. 
 
 ---About the DATASET:
----
+---This dataset contains detailed information about chairs listed for sale on eBay, 
+---including pricing, item condition, seller ratings, and other relevant attributes. 
+---It provides valuable insights for anyone interested in analyzing e-commerce trends, predicting prices, 
+---or studying market segmentation in the furniture category.
 
 SELECT *
 FROM [Ecommerce].[dbo].[Ecommerca Data chairsonebay];
