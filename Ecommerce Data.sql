@@ -41,8 +41,8 @@ WITH duplicate_cte AS
 (
 SELECT *,
 ROW_NUMBER() OVER(
-			PARTITION BY title, categories, brand, type, sold, available, mpn, item_Location, ships_to, price
-			ORDER BY price ASC) AS row_number
+		PARTITION BY title, categories, brand, type, sold, available, mpn, item_Location, ships_to, price
+		ORDER BY price ASC) AS row_number
 FROM [Ecommerce].[dbo].[Ecommerce_Chairs_Data]
 )
 SELECT *
@@ -55,8 +55,8 @@ WITH duplicate_cte AS
 (
 SELECT *,
 ROW_NUMBER() OVER(
-			PARTITION BY title, categories, brand, type, sold, available, mpn, item_Location, ships_to, price
-			ORDER BY categories ASC) AS row_number
+		PARTITION BY title, categories, brand, type, sold, available, mpn, item_Location, ships_to, price
+		ORDER BY categories ASC) AS row_number
 FROM [Ecommerce].[dbo].[Ecommerce_Chairs_Data]
 )
 DELETE
@@ -79,28 +79,28 @@ WHERE categories LIKE 'Sofas%' AND title LIKE '%N2X5' OR title LIKE '%T2Q7';
 
 UPDATE [Ecommerce].[dbo].[Ecommerce_Chairs_Data]
 SET categories = CASE
-					WHEN categories LIKE 'Sofas & Armchairs%' THEN 'Sofas, Armchairs & Couches'
-					WHEN categories LIKE 'Massagers%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Other Home Organization%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Other Office%' THEN 'Home Office Desks'
-					WHEN categories LIKE 'Every Other Thing%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Athletic Shoes%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Other Mobility Equipment%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Seat & Posture Cushions%' THEN 'Electric Massage Chairs'
-					WHEN categories LIKE 'Desks & Tables%' THEN 'Home Office Desks'
-					WHEN categories LIKE 'Office Furniture%' THEN 'Home Office Desks'
-					ELSE NULL
-				END
+			WHEN categories LIKE 'Sofas & Armchairs%' THEN 'Sofas, Armchairs & Couches'
+			WHEN categories LIKE 'Massagers%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Other Home Organization%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Other Office%' THEN 'Home Office Desks'
+			WHEN categories LIKE 'Every Other Thing%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Athletic Shoes%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Other Mobility Equipment%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Seat & Posture Cushions%' THEN 'Electric Massage Chairs'
+			WHEN categories LIKE 'Desks & Tables%' THEN 'Home Office Desks'
+			WHEN categories LIKE 'Office Furniture%' THEN 'Home Office Desks'
+			ELSE NULL
+		END
 WHERE categories LIKE 'Sofas & Armchairs%' 
-				OR categories LIKE 'Massagers%'
-				OR categories LIKE 'Other Home Organization%'
-				OR categories LIKE 'Other Office%' 
-				OR categories LIKE 'Every Other Thing%' 
-				OR categories LIKE 'Athletic Shoes%' 
-				OR categories LIKE 'Other Mobility Equipment%' 
-				OR categories LIKE 'Seat & Posture Cushions%' 
-				OR categories LIKE 'Desks & Tables%'
-				OR categories LIKE 'Office Furniture%'
+	OR categories LIKE 'Massagers%'
+	OR categories LIKE 'Other Home Organization%'
+	OR categories LIKE 'Other Office%' 
+	OR categories LIKE 'Every Other Thing%' 
+	OR categories LIKE 'Athletic Shoes%' 
+	OR categories LIKE 'Other Mobility Equipment%' 
+	OR categories LIKE 'Seat & Posture Cushions%' 
+	OR categories LIKE 'Desks & Tables%'
+	OR categories LIKE 'Office Furniture%'
 
 
 UPDATE [Ecommerce].[dbo].[Ecommerce_Chairs_Data]
@@ -113,49 +113,49 @@ WHERE brand iS NULL;
 
 UPDATE [Ecommerce].[dbo].[Ecommerce_Chairs_Data]
 SET type = CASE 
-				WHEN type LIKE 'Massage Chair Recliner%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Massage Recliner Chair w%'  OR type LIKE 'Chair%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Recliner Chair%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'recliner chair%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'Massage Recliner Chair S%' OR type LIKE 'L%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'Massage Chair Cu%' OR type LIKE 'Remote%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'H%' OR type LIKE 'Recliner, Folding C%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'Does not ap%' OR type LIKE 'N%' THEN 'Unknown'
-				WHEN type LIKE 'F%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'S%' OR type LIKE 's%' THEN 'Massage Chair Recliner'
-				WHEN type LIKE 'C%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Power Lift Re%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Sleeper Cha%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'R%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'O%' THEN 'Massage Office Chair'
-				WHEN type LIKE 'm%' OR type LIKE 'E%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Recliner, Ar%' OR type LIKE 'l%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'A%'  OR type LIKE 'a%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Power Lift Recli%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'u%'  OR type LIKE 'Recliner Chair, Massag%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Rocker Reclin%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Recliner, Reception/Gu%' THEN 'Massage Office Chair'
-				WHEN type LIKE 'G%' OR type LIKE 'L%' THEN 'Massage Recliner Chair'
-				WHEN type LIKE 'Dining Cha%' THEN 'Massage Recliner Chair'
-				ELSE NULL
-			END
+		WHEN type LIKE 'Massage Chair Recliner%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Massage Recliner Chair w%'  OR type LIKE 'Chair%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Recliner Chair%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'recliner chair%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'Massage Recliner Chair S%' OR type LIKE 'L%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'Massage Chair Cu%' OR type LIKE 'Remote%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'H%' OR type LIKE 'Recliner, Folding C%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'Does not ap%' OR type LIKE 'N%' THEN 'Unknown'
+		WHEN type LIKE 'F%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'S%' OR type LIKE 's%' THEN 'Massage Chair Recliner'
+		WHEN type LIKE 'C%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Power Lift Re%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Sleeper Cha%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'R%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'O%' THEN 'Massage Office Chair'
+		WHEN type LIKE 'm%' OR type LIKE 'E%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Recliner, Ar%' OR type LIKE 'l%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'A%'  OR type LIKE 'a%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Power Lift Recli%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'u%'  OR type LIKE 'Recliner Chair, Massag%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Rocker Reclin%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Recliner, Reception/Gu%' THEN 'Massage Office Chair'
+		WHEN type LIKE 'G%' OR type LIKE 'L%' THEN 'Massage Recliner Chair'
+		WHEN type LIKE 'Dining Cha%' THEN 'Massage Recliner Chair'
+		ELSE NULL
+	END
 WHERE type LIKE 'Massage Chair Recliner%' 
-				OR type LIKE 'Massage Recliner Chair w%'  OR type LIKE 'Chair%' 
-				OR type LIKE 'Recliner Chair%' 
-				OR type LIKE 'recliner chair%'
-				OR type LIKE 'Massage Recliner Chair S%' OR type LIKE 'L%'
-				OR type LIKE 'Massage Chair Cu%' OR type LIKE 'Remote%'
-				OR type LIKE 'H%' OR type LIKE 'Recliner, Folding C%' 
-				OR type LIKE 'Does not ap%' OR type LIKE 'N%'
-				OR type LIKE 'F%'
-				OR type LIKE 'S%' OR type LIKE 's%' 
-				OR type LIKE 'C%' 
-				OR type LIKE 'Power Lift Re%'
-				OR type LIKE 'Sleeper Cha%' 
-				OR type LIKE 'R%' 
-				OR type LIKE 'O%' 
-				OR type LIKE 'm%' OR type LIKE 'E%' 
-				OR type LIKE 'Recliner, Ar%' OR type LIKE 'l%' 
+	OR type LIKE 'Massage Recliner Chair w%'  OR type LIKE 'Chair%' 
+	OR type LIKE 'Recliner Chair%' 
+	OR type LIKE 'recliner chair%'
+	OR type LIKE 'Massage Recliner Chair S%' OR type LIKE 'L%'
+	OR type LIKE 'Massage Chair Cu%' OR type LIKE 'Remote%'
+	OR type LIKE 'H%' OR type LIKE 'Recliner, Folding C%' 
+	OR type LIKE 'Does not ap%' OR type LIKE 'N%'
+	OR type LIKE 'F%'
+	OR type LIKE 'S%' OR type LIKE 's%' 
+	OR type LIKE 'C%' 
+	OR type LIKE 'Power Lift Re%'
+	OR type LIKE 'Sleeper Cha%' 
+	OR type LIKE 'R%' 
+	OR type LIKE 'O%' 
+	OR type LIKE 'm%' OR type LIKE 'E%' 
+	OR type LIKE 'Recliner, Ar%' OR type LIKE 'l%' 
 				OR type LIKE 'A%'  OR type LIKE 'a%' 
 				OR type LIKE 'Power Lift Recli%' 
 				OR type LIKE 'u%'  OR type LIKE 'Recliner Chair, Massag%' 
